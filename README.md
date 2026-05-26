@@ -1,6 +1,6 @@
 # math2speech-docs
 
-Convert math-heavy PDFs and Markdown documents into TTS-friendly Markdown for accessibility and AI workflows.
+Transcribe LaTeX formulas into natural language—turn math-heavy PDFs and Markdown into TTS-ready Markdown for accessibility and AI/TTS workflows.
 
 Created by edujbarriso.
 
