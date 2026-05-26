@@ -5,18 +5,26 @@ from pathlib import Path
 from .extraction.markdown import load_markdown, normalize_markdown
 from .extraction.pdf import extract_pdf_to_markdown
 from .extraction.text import load_text
-from .types.models import ConversionMode, ConversionResult, DocumentType, LanguageCode
+from .prompts.renderer import PromptRenderer
+from .types.models import ConversionMode, ConversionResult, DocumentType, LanguageCode, StrictnessLevel
 
 
-def generate_prompt(markdown_text: str, *, language: LanguageCode = "en") -> str:
-    """Generate an LLM prompt for rewriting math into natural language."""
-    return (
-        "SYSTEM: You are a document accessibility assistant.\n\n"
-        f"Target language: {language}\n\n"
-        "Rewrite mathematical notation into natural language while preserving Markdown structure.\n"
-        "Return only the rewritten document.\n\n"
-        "DOCUMENT:\n"
-        f"{markdown_text}\n"
+def generate_prompt(
+    markdown_text: str,
+    *,
+    language: LanguageCode = "en",
+    strictness: StrictnessLevel = "balanced",
+    document_title: str | None = None,
+    include_quality_check: bool = False,
+) -> str:
+    """Generate an LLM prompt for rewriting math into natural language (no network calls)."""
+    renderer = PromptRenderer.default()
+    return renderer.render_rewrite_document(
+        markdown_text=markdown_text,
+        language=language,
+        strictness=strictness,
+        document_title=document_title,
+        include_quality_check=include_quality_check,
     )
 
 
