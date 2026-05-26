@@ -34,8 +34,9 @@ def test_openai_client_happy_path_with_fake_openai(monkeypatch: pytest.MonkeyPat
         def __init__(self, base_url, api_key):
             self.chat = _FakeChat()
 
-    monkeypatch.setitem(__import__("sys").modules, "openai", types.SimpleNamespace(OpenAI=_FakeOpenAI))
+    monkeypatch.setitem(
+        __import__("sys").modules, "openai", types.SimpleNamespace(OpenAI=_FakeOpenAI)
+    )
 
     client = OpenAICompatibleClient(api_base_url="https://example.com/v1", api_key="k", model="m")
     assert client.rewrite_markdown(system_prompt="s", user_prompt="u") == "OK"
-

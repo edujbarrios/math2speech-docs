@@ -12,7 +12,7 @@ class PromptRenderer:
     env: Environment
 
     @classmethod
-    def default(cls) -> "PromptRenderer":
+    def default(cls) -> PromptRenderer:
         env = Environment(
             loader=PackageLoader("math2speech_docs", "prompts/templates"),
             autoescape=False,
@@ -45,4 +45,3 @@ class PromptRenderer:
             document_title=document_title,
             include_quality_check=include_quality_check,
         )
-

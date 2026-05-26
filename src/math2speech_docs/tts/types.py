@@ -11,4 +11,3 @@ class SpeechifySynthesisResult(BaseModel):
     input_text: str
     voice: str
     language: LanguageCode
-

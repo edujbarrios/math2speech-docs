@@ -29,4 +29,3 @@ class SpeechifyClient:
             voice=voice,
             language=language,
         )
-

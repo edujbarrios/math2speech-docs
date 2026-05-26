@@ -13,4 +13,3 @@ def test_rule_based_conversion_spanish_examples():
     out = rewrite_markdown_math(text, language="es")
     assert "igual a" in out
     assert "al cuadrado" in out
-

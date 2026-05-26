@@ -45,25 +45,31 @@ def rewrite_math_expression(expr: str, *, language: LanguageCode) -> str:
     for latex, (en_word, es_word) in _LATEX_OPS.items():
         text = text.replace(latex, _lang(language, en_word, es_word))
 
-    text = _FRAC.sub(lambda m: f"{m.group(1)} {_lang(language,'divided by','dividido entre')} {m.group(2)}", text)
-    text = _SQRT.sub(lambda m: f"{_lang(language,'the square root of','la raíz cuadrada de')} {m.group(1)}", text)
+    text = _FRAC.sub(
+        lambda m: f"{m.group(1)} {_lang(language, 'divided by', 'dividido entre')} {m.group(2)}",
+        text,
+    )
+    text = _SQRT.sub(
+        lambda m: f"{_lang(language, 'the square root of', 'la raíz cuadrada de')} {m.group(1)}",
+        text,
+    )
 
     def pow_repl(m: re.Match[str]) -> str:
         base = m.group(1)
         exp = m.group(2)
         exp = exp[1:-1] if exp.startswith("{") and exp.endswith("}") else exp
         if exp == "2":
-            return f"{base} {_lang(language,'squared','al cuadrado')}"
+            return f"{base} {_lang(language, 'squared', 'al cuadrado')}"
         if exp == "3":
-            return f"{base} {_lang(language,'cubed','al cubo')}"
-        return f"{base} {_lang(language,'to the power of','a la potencia')} {exp}"
+            return f"{base} {_lang(language, 'cubed', 'al cubo')}"
+        return f"{base} {_lang(language, 'to the power of', 'a la potencia')} {exp}"
 
     text = _POWER.sub(pow_repl, text)
     text = _SUBSCRIPT.sub(lambda m: f"{m.group(1)} sub {m.group(2)}", text)
 
     # Token-level replacements for common operators.
     for symbol, (en_word, es_word) in _OPS.items():
-        text = text.replace(symbol, f" {_lang(language,en_word,es_word)} ")
+        text = text.replace(symbol, f" {_lang(language, en_word, es_word)} ")
 
     # Light cleanup
     text = re.sub(r"\s+", " ", text).strip()
@@ -80,4 +86,3 @@ def rewrite_markdown_math(markdown_text: str, *, language: LanguageCode) -> str:
     out = _BLOCK_DOLLAR.sub(block_repl, markdown_text)
     out = _INLINE_DOLLAR.sub(inline_repl, out)
     return out
-

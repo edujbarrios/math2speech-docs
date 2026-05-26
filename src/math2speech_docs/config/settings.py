@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     speechify_voice_id: str | None = None
 
     @classmethod
-    def from_env(cls) -> "Settings":
+    def from_env(cls) -> Settings:
         # Allow SPEECHIFY_* vars while still supporting MATH2SPEECH_* for core settings.
         base = cls()
         # Pydantic-settings doesn't support multiple prefixes cleanly; read these manually.
@@ -24,4 +24,3 @@ class Settings(BaseSettings):
         base.speechify_api_key = os.getenv("SPEECHIFY_API_KEY")
         base.speechify_voice_id = os.getenv("SPEECHIFY_VOICE_ID")
         return base
-

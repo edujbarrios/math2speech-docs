@@ -8,4 +8,3 @@ def load_text(path: str | Path, *, document_title: str | None = None) -> str:
     if document_title:
         return f"# {document_title}\n\n{text}\n"
     return text
-

@@ -20,7 +20,7 @@ def extract_pdf_to_markdown(path: str | Path) -> str:
         raise FileNotFoundError(str(pdf_path))
 
     try:
-        to_md = getattr(pymupdf4llm, "to_markdown")
+        to_md = pymupdf4llm.to_markdown
     except AttributeError as exc:  # pragma: no cover
         raise PDFExtractionError("pymupdf4llm is installed but missing to_markdown().") from exc
 
@@ -30,4 +30,3 @@ def extract_pdf_to_markdown(path: str | Path) -> str:
         raise PDFExtractionError(f"Failed to extract PDF: {pdf_path}") from exc
 
     return str(md).replace("\r\n", "\n")
-

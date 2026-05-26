@@ -40,7 +40,9 @@ def convert(
         model=model,
     )
     out_path = output or input_path.with_suffix(f".{language}.tts.md")
-    out_path.write_text(result.prompt if mode == "prompt" else result.output_markdown, encoding="utf-8")
+    out_path.write_text(
+        result.prompt if mode == "prompt" else result.output_markdown, encoding="utf-8"
+    )
     typer.echo(str(out_path))
 
 

@@ -2,14 +2,14 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .extraction.markdown import load_markdown, normalize_markdown
-from .extraction.pdf import extract_pdf_to_markdown
-from .extraction.text import load_text
-from .prompts.renderer import PromptRenderer
 from .chunking.chunker import chunk_markdown
 from .conversion.postprocess import postprocess_markdown
 from .conversion.rule_based import rewrite_markdown_math
+from .extraction.markdown import load_markdown, normalize_markdown
+from .extraction.pdf import extract_pdf_to_markdown
+from .extraction.text import load_text
 from .llm.openai_compatible import OpenAICompatibleClient
+from .prompts.renderer import PromptRenderer
 from .types.models import (
     ConversionMode,
     ConversionResult,

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import re
 
-
 _MULTISPACE = re.compile(r"[ \t]{2,}")
 
 
@@ -13,4 +12,3 @@ def postprocess_markdown(markdown_text: str) -> str:
         for line in markdown_text.replace("\r\n", "\n").split("\n")
     ]
     return "\n".join(lines).strip() + "\n"
-

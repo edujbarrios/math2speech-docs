@@ -24,4 +24,3 @@ def test_pdf_extraction_wrapper_calls_pymupdf4llm(monkeypatch: pytest.MonkeyPatc
 
     md = extract_pdf_to_markdown(pdf_path)
     assert "Extracted" in md
-

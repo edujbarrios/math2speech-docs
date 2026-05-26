@@ -14,7 +14,9 @@ def test_cli_prompt_writes_output(tmp_path: Path):
     input_path.write_text("The famous equation is $E = mc^2$.\n", encoding="utf-8")
 
     out_path = tmp_path / "prompt.md"
-    result = runner.invoke(app, ["prompt", str(input_path), "--output", str(out_path), "--language", "en"])
+    result = runner.invoke(
+        app, ["prompt", str(input_path), "--output", str(out_path), "--language", "en"]
+    )
     assert result.exit_code == 0
     assert out_path.exists()
     assert "Rewrite the following Markdown document" in out_path.read_text(encoding="utf-8")
@@ -28,7 +30,16 @@ def test_cli_convert_rule_based(tmp_path: Path):
     out_path = tmp_path / "out.md"
     result = runner.invoke(
         app,
-        ["convert", str(input_path), "--mode", "rule-based", "--language", "en", "--output", str(out_path)],
+        [
+            "convert",
+            str(input_path),
+            "--mode",
+            "rule-based",
+            "--language",
+            "en",
+            "--output",
+            str(out_path),
+        ],
     )
     assert result.exit_code == 0
     assert "equals" in out_path.read_text(encoding="utf-8")
@@ -43,4 +54,3 @@ def test_cli_speechify_preview_outputs_json(tmp_path: Path):
     assert result.exit_code == 0
     payload = json.loads(result.stdout)
     assert payload["status"] == "placeholder"
-

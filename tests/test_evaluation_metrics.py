@@ -13,4 +13,3 @@ def test_metrics_basic_behavior():
     assert formula_replacement_count(original, rewritten) >= 1
     assert readability_length_change(original, rewritten) != 0
     assert 0.0 <= unchanged_text_ratio(original, rewritten) <= 1.0
-

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from enum import Enum
+from enum import StrEnum
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
@@ -9,6 +9,7 @@ LanguageCode = Literal["en", "es"]
 ConversionMode = Literal["prompt", "rule-based", "llm"]
 DocumentType = Literal["pdf", "markdown", "text"]
 StrictnessLevel = Literal["conservative", "balanced", "aggressive"]
+
 
 class ChunkMetadata(BaseModel):
     index: int = Field(ge=0)
@@ -49,6 +50,5 @@ class ConversionResult(BaseModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
 
-class PlaceholderStatus(str, Enum):
+class PlaceholderStatus(StrEnum):
     placeholder = "placeholder"
-

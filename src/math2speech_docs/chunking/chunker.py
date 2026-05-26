@@ -46,4 +46,3 @@ def chunk_markdown(markdown_text: str, *, chunk_size: int = 3000) -> list[Docume
 
 def chunk_is_math_heavy(chunk: DocumentChunk, *, threshold: float = 0.01) -> bool:
     return chunk.metadata.math_score >= threshold or bool(extract_math_expressions(chunk.markdown))
-

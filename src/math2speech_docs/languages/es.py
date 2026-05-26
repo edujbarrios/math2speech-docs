@@ -4,4 +4,3 @@ SPANISH = {
     "divided_by": "dividido entre",
     "sqrt_of": "la raíz cuadrada de",
 }
-

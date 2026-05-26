@@ -8,9 +8,7 @@ _INLINE_DOLLAR = re.compile(r"\$(.+?)\$")
 _BLOCK_DOLLAR = re.compile(r"\$\$(.+?)\$\$", re.DOTALL)
 _PAREN_LATEX = re.compile(r"\\\((.+?)\\\)", re.DOTALL)
 _BRACKET_LATEX = re.compile(r"\\\[(.+?)\\\]", re.DOTALL)
-_LATEX_COMMANDS = re.compile(
-    r"\\(frac|sqrt|sum|int|neq|leq|geq|alpha|beta|gamma|theta|pi)\b"
-)
+_LATEX_COMMANDS = re.compile(r"\\(frac|sqrt|sum|int|neq|leq|geq|alpha|beta|gamma|theta|pi)\b")
 
 
 def extract_math_expressions(text: str) -> list[str]:
@@ -31,5 +29,6 @@ def compute_math_score(text: str) -> float:
 def detect_math(markdown_text: str, *, threshold: float = 1.0) -> DetectionResult:
     expressions = extract_math_expressions(markdown_text)
     score = compute_math_score(markdown_text)
-    return DetectionResult(is_math_heavy=score >= threshold, math_score=score, expressions=expressions)
-
+    return DetectionResult(
+        is_math_heavy=score >= threshold, math_score=score, expressions=expressions
+    )

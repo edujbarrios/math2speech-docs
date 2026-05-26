@@ -11,4 +11,3 @@ def test_load_markdown_reads_file(tmp_path: Path):
 
 def test_normalize_markdown_normalizes_newlines():
     assert normalize_markdown("a\r\nb\r\n") == "a\nb\n"
-

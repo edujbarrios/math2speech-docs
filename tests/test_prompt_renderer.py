@@ -6,4 +6,3 @@ def test_generate_prompt_includes_required_sections():
     assert "SYSTEM" in prompt
     assert "USER" in prompt
     assert "Return only the rewritten document" in prompt
-

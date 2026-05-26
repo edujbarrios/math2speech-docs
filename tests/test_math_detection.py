@@ -9,4 +9,3 @@ def test_detect_math_finds_inline_and_commands():
 
     result = detect_math(text)
     assert result.math_score > 0
-

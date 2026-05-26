@@ -17,6 +17,7 @@ def unchanged_text_ratio(original_markdown: str, rewritten_markdown: str) -> flo
 
     MVP metric: remove math delimiters and normalize whitespace, then compare prefix overlap.
     """
+
     def normalize(s: str) -> str:
         s = re.sub(r"\$\$.*?\$\$", " ", s, flags=re.DOTALL)
         s = re.sub(r"\$.*?\$", " ", s)
@@ -30,7 +31,7 @@ def unchanged_text_ratio(original_markdown: str, rewritten_markdown: str) -> flo
     if not a:
         return 1.0 if not b else 0.0
     common = 0
-    for ca, cb in zip(a, b):
+    for ca, cb in zip(a, b, strict=False):
         if ca == cb:
             common += 1
         else:
@@ -44,4 +45,3 @@ def detected_math_expressions(markdown_text: str) -> list[str]:
 
 def readability_length_change(original_markdown: str, rewritten_markdown: str) -> int:
     return len(rewritten_markdown) - len(original_markdown)
-

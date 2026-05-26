@@ -6,4 +6,3 @@ def test_chunk_markdown_splits_into_multiple_chunks():
     chunks = chunk_markdown(text, chunk_size=200)
     assert len(chunks) > 1
     assert all(chunk.metadata.char_count > 0 for chunk in chunks)
-
