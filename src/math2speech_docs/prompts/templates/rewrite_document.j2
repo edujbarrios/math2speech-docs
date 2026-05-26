@@ -1,0 +1,21 @@
+SYSTEM
+{{ system_prompt }}
+
+USER
+{% if document_title -%}
+Document title: {{ document_title }}
+{% endif %}
+
+Rewrite the following Markdown document. Return only the rewritten Markdown.
+
+DOCUMENT
+{{ markdown_text }}
+
+{% if include_quality_check -%}
+
+QUALITY CHECK (self-check before final answer)
+- Verify Markdown structure is preserved.
+- Verify code blocks are unchanged.
+- Verify only math was rewritten.
+{% endif %}
+

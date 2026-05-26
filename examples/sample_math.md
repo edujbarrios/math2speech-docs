@@ -1,0 +1,8 @@
+# Sample Math
+
+The famous equation is $E = mc^2$.
+
+Another example: $x^2 + y^2 = z^2$.
+
+LaTeX fraction: $\\frac{a}{b}$.
+
