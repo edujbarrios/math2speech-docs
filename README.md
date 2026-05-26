@@ -2,7 +2,7 @@
 
 Convert math-heavy PDFs and Markdown documents into TTS-friendly Markdown for accessibility and AI workflows.
 
-Created by edujbarriso.
+Created by edujbarrios - Eduardo J. Barrios.
 
 ## Motivation
 
@@ -53,7 +53,7 @@ src/math2speech_docs/
 ## Install
 
 ```bash
-git clone https://github.com/edujbarriso/math2speech-docs.git
+git clone https://github.com/edujbarrios/math2speech-docs.git
 cd math2speech-docs
 pip install -e .
 ```
@@ -244,4 +244,4 @@ For this project I used LLM7.io as the default OpenAI-compatible API placeholder
 
 ## License
 
-MIT (see `LICENSE`).
+Apache-2.0 (see `LICENSE`).
