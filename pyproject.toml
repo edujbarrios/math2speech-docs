@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "math2speech-docs"
 version = "0.1.0"
-description = "Convert math-heavy PDFs and Markdown documents into TTS-friendly Markdown for accessibility and AI workflows."
+description = "Transcribe LaTeX formulas into natural language—turn math-heavy PDFs and Markdown into TTS-ready Markdown for accessibility and AI/TTS workflows."
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "edujbarriso" }]
