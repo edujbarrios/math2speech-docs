@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .types.models import ConversionMode, ConversionResult, LanguageCode
+from .extraction.markdown import load_markdown, normalize_markdown
+from .extraction.pdf import extract_pdf_to_markdown
+from .extraction.text import load_text
+from .types.models import ConversionMode, ConversionResult, DocumentType, LanguageCode
 
 
 def generate_prompt(markdown_text: str, *, language: LanguageCode = "en") -> str:
@@ -31,14 +34,24 @@ def convert_document(
     if not path.exists():
         raise FileNotFoundError(str(path))
 
-    # MVP placeholder: in prompt mode we simply return a prompt.
-    markdown_text = path.read_text(encoding="utf-8")
+    suffix = path.suffix.lower()
+    if suffix == ".pdf":
+        document_type: DocumentType = "pdf"
+        markdown_text = extract_pdf_to_markdown(path)
+    elif suffix in {".md", ".markdown"}:
+        document_type = "markdown"
+        markdown_text = load_markdown(path)
+    else:
+        document_type = "text"
+        markdown_text = load_text(path)
+
+    markdown_text = normalize_markdown(markdown_text)
     prompt = generate_prompt(markdown_text, language=language)
     return ConversionResult(
         input_path=str(path),
+        document_type=document_type,
         language=language,
         mode=mode,
         output_markdown=markdown_text,
         prompt=prompt if mode == "prompt" else None,
     )
-
