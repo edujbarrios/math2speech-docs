@@ -8,8 +8,9 @@ version = "0.1.0"
 description = "Transcribe LaTeX formulas into natural language—turn math-heavy PDFs and Markdown into TTS-ready Markdown for accessibility and AI/TTS workflows."
 readme = "README.md"
 requires-python = ">=3.12"
-authors = [{ name = "edujbarriso" }]
-license = { text = "MIT" }
+authors = [{ name = "edujbarrios - Eduardo J. Barrios" }]
+license = { text = "Apache-2.0" }
+classifiers = ["License :: OSI Approved :: Apache Software License"]
 dependencies = [
   "jinja2>=3.1.2",
   "pydantic>=2.7.0",
