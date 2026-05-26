@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "math2speech-docs"
+version = "0.1.0"
+description = "Convert math-heavy PDFs and Markdown documents into TTS-friendly Markdown for accessibility and AI workflows."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "edujbarriso" }]
+license = { text = "MIT" }
+dependencies = [
+  "jinja2>=3.1.2",
+  "pydantic>=2.7.0",
+  "pydantic-settings>=2.3.0",
+  "python-dotenv>=1.0.1",
+  "typer>=0.12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.5.0",
+]
+llm = ["openai>=1.0.0"]
+pdf = ["pymupdf4llm>=1.27.2.1"]
+
+[project.scripts]
+math2speech-docs = "math2speech_docs.cli.main:app"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
